@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "driver-diary"
+version = "1.0.0"
+description = "Дневник смен водителя: поездки, сводка за день, защита от дублей"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.143.0",
+    "pydantic==2.14.0",
+    "uvicorn[standard]==0.54.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "httpx2==2.13.1",
+    "ruff==0.17.0",
+    "mypy==2.4.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["driver_diary*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+# Комментарии и docstring'и на русском: кириллица — не «похожие на латиницу» символы.
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
