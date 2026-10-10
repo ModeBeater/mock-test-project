@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Рабочая копия данных (создаётся из seed_trips.json при первом запуске)
+backend/data/trips.json
+backend/data/.trips.json.*
+
+# macOS / IDE
+.DS_Store
+.idea/
+.vscode/
